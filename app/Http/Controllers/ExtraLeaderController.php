@@ -64,7 +64,9 @@ class ExtraLeaderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view("leader.form-edit", [
+            "leader" => User::find($id)
+        ]);
     }
 
     /**
@@ -72,7 +74,33 @@ class ExtraLeaderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $leader = User::find($id);
+        $validation = $request->validate([
+            "name" => "required",
+            "email" => "required",
+            "avatar" => "image|mimes:jpg,png,jpeg"
+        ]);
+
+        if (!empty($request->password)) {
+            $validation['password'] = bcrypt($request->password);
+        }
+
+        if ($request->file('avatar')) {
+            if ($request->avatar) {
+                $oldAvatarPath = public_path("uploads/avatar/" . $leader->avatar);
+                if (file_exists($oldAvatarPath)) {
+                    unlink($oldAvatarPath);
+                }
+            }
+
+            $file_name = rand(1000, 9999) . '.' . date("ymdHis") . $request->file('avatar')->getClientOriginalName();
+            $request->file("avatar")->move(public_path("uploads/avatar/"), $file_name);
+            $validation['avatar'] = $file_name;
+        }
+
+        $leader->update($validation);
+
+        return redirect()->route("extraleader.index");
     }
 
     /**
