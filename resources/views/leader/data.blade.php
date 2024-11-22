@@ -43,8 +43,8 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-md">Delete</button>
+                                        <a href="{{ route('extraleader.edit', $see->id) }}" class="btn btn-warning btn-md">Edit</a>
                                     </form>
-                                    <a href="{{ route('extraleader.edit', $see->id) }}" class="btn btn-warning btn-md">Edit</a>
                                 </td>
                             </tr>
                         @endforeach

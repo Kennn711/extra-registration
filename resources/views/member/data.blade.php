@@ -36,11 +36,19 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $see->user->name }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $see->user->email }}</td>
+                                <td>{{ $see->reason }}</td>
+                                <td>{{ $see->date_of_registration }}</td>
+                                <td>
+                                    <img src="{{ asset('uploads/avatar/' . $see->user->avatar) }}" alt="" width="100">
+                                </td>
+                                <td>
+                                    <form action="{{ route('member.destroy', $see->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-md">Kick</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

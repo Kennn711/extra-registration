@@ -19,7 +19,7 @@ class MemberController extends Controller
     function create()
     {
         return view("member.form", [
-            "student" => User::where("role", "student")->whereNull("extra_id")->get()
+            "student" => User::where("role", "student")->whereNull("extra_id")->whereDoesntHave("member")->get()
         ]);
     }
 
@@ -31,6 +31,13 @@ class MemberController extends Controller
             "reason" => $request->reason,
             "date_of_registration" => Carbon::now()
         ]);
+
+        return redirect()->route("member.index");
+    }
+
+    function destroy(String $id)
+    {
+        Member::find($id)->delete();
 
         return redirect()->route("member.index");
     }
