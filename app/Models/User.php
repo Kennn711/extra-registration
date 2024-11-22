@@ -24,12 +24,12 @@ class User extends Authenticatable
     // ];
     protected $guarded = ['id'];
 
-    function extra()
+    public function extra()
     {
         return $this->belongsTo(Extra::class, 'extra_id');
     }
 
-    function member()
+    public function member()
     {
         return $this->hasMany(Member::class, 'student_id', 'id');
     }

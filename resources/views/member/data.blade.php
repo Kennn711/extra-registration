@@ -24,7 +24,6 @@
                         <tr>
                             <th>No</th>
                             <th>Fullname</th>
-                            <th>Email</th>
                             <th>Reason</th>
                             <th>Date Of Registration</th>
                             <th>Avatar</th>
@@ -36,7 +35,6 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $see->user->name }}</td>
-                                <td>{{ $see->user->email }}</td>
                                 <td>{{ $see->reason }}</td>
                                 <td>{{ $see->date_of_registration }}</td>
                                 <td>

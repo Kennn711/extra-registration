@@ -11,6 +11,12 @@ Route::get("/", [AuthController::class, 'landingPage'])->name("landingPage");
 Route::get("login", [AuthController::class, 'login'])->name("login");
 Route::get("register", [AuthController::class, 'register'])->name("register");
 
+Route::post('/login', [AuthController::class, 'loginValidation'])->name("login.validation");
+Route::get('logout', [AuthController::class, 'logout'])->name("logout");
+
+Route::get("admin/dashboard", [AuthController::class, 'dashboardAdmin'])->name("admin.index");
+Route::get("leader/dashboard", [AuthController::class, 'dashboardLeader'])->name("leader.index");
+
 Route::resource("extra", ExtraController::class);
 Route::resource("extraleader", ExtraLeaderController::class);
 Route::resource("student", StudentController::class);

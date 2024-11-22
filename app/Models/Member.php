@@ -8,12 +8,12 @@ class Member extends Model
 {
     protected $guarded = ['id'];
 
-    function extra()
+    public function extra()
     {
         return $this->belongsTo(Extra::class, 'student_id');
     }
 
-    function user()
+    public function user()
     {
         return $this->belongsTo(User::class, 'student_id', 'id');
     }

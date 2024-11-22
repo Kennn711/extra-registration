@@ -6,13 +6,14 @@ use App\Models\Member;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
     function index()
     {
         return view("member.data", [
-            "member" => Member::with('user')->get()
+            "member" => Member::with('user')->where('extra_id', Auth::user()->extra_id)->get()
         ]);
     }
 
@@ -26,7 +27,7 @@ class MemberController extends Controller
     function store(Request $request)
     {
         Member::create([
-            "extra_id" => 1,
+            "extra_id" => Auth::user()->extra_id,
             "student_id" => $request->student_id,
             "reason" => $request->reason,
             "date_of_registration" => Carbon::now()
