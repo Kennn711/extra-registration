@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Extra;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExtraController extends Controller
@@ -13,7 +14,7 @@ class ExtraController extends Controller
     public function index()
     {
         return view("extra.data", [
-            "extra" => Extra::get()
+            "extra" => Extra::with("leader")->get()
         ]);
     }
 
@@ -22,7 +23,9 @@ class ExtraController extends Controller
      */
     public function create()
     {
-        return view("extra.form");
+        return view("extra.form", [
+            "leader" => User::where("role", "leader")->whereNull("extra_id")->get()
+        ]);
     }
 
     /**
@@ -31,17 +34,22 @@ class ExtraController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            "name" => "required",
-            "time" => "required",
+            "name"        => "required",
+            "time"        => "required",
             "description" => "required",
-            "logo" => "required|image|mimes:jpg,png,jpeg",
+            "extra_id"   => "required",
+            "logo"        => "required|image|mimes:jpg,png,jpeg",
         ]);
 
         $file_name = rand(1000, 9999) . date("ymdHis") . '.' . $request->file('logo')->getClientOriginalName();
         $request->file('logo')->move(public_path("uploads/logo/"), $file_name);
         $validation['logo'] = $file_name;
 
-        Extra::create($validation);
+        $extra = Extra::create($validation);
+
+        $leader = User::find($validation['extra_id']);
+        $leader->extra_id = $extra->id;
+        $leader->save();
 
         return redirect()->route("extra.index");
     }

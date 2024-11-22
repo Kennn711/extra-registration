@@ -1,9 +1,16 @@
-@extends('layouts.index')
+@extends('layouts-backend.index')
+@section('page-title', 'Leader')
 
-@section('content')
+@push('breadcumb-backend')
+    <li class="breadcrumb-item">Admin</li>
+    <li class="breadcrumb-item">Tables</li>
+    <li class="breadcrumb-item">Extra Leader</li>
+    <li class="breadcrumb-item active">Add Extra Leader</li>
+@endpush
+@section('content-backend')
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <div class="justify-content-center align-items-center">
                     <h1>Form Add Leader</h1>
                 </div>

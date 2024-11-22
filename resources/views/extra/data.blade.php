@@ -1,50 +1,59 @@
-@extends('layouts.index')
+@extends('layouts-backend.index')
+@section('page-title', 'Extracullicular Data')
 
-@section('content')
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+@push('breadcumb-backend')
+    <li class="breadcrumb-item">Admin</li>
+    <li class="breadcrumb-item">Tables</li>
+    <li class="breadcrumb-item active" aria-current="page">Extracullicular</li>
+@endpush
+@section('content-backend')
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1>Extracullicular Data</h1>
-                    <a href="{{ route('extra.create') }}" class="btn btn-success">Add</a>
-                </div>
-                <div class="card shadow">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Extracullicular</th>
-                                    <th>Day</th>
-                                    <th>Description</th>
-                                    <th>Logo</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($extra as $see)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $see->name }}</td>
-                                        <td>{{ $see->time }}</td>
-                                        <td>{{ $see->description }}</td>
-                                        <td>
-                                            <img src="{{ asset('uploads/logo/' . $see->logo) }}" alt="" width="50">
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('extra.destroy', $see->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <h5 class="card-title">
+                        Extracullicular Data
+                    </h5>
+                    <a href="{{ route('extra.create') }}" class="btn btn-success btn-md">Add</a>
                 </div>
             </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Extracullicular</th>
+                            <th>Day</th>
+                            <th>Description</th>
+                            <th>Leader Name</th>
+                            <th>Avatar</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($extra as $see)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $see->name }}</td>
+                                <td>{{ $see->time }}</td>
+                                <td>{{ $see->description }}</td>
+                                <td>{{ $see->leader->name ?? '' }}</td>
+                                <td>
+                                    <img src="{{ asset('uploads/logo/' . $see->logo) }}" alt="" width="100">
+                                </td>
+                                <td>
+                                    <form action="{{ route('extra.destroy', $see->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-md">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+
+    </section>
 @endsection

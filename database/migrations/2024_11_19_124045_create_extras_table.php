@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('extras', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("leader_id");
             $table->string("name");
             $table->string("time");
             $table->string("description");
