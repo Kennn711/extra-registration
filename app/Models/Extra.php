@@ -17,4 +17,9 @@ class Extra extends Model
     {
         return $this->hasMany(Member::class, 'student_id');
     }
+
+    public function registration()
+    {
+        return $this->hasMany(Registration::class, 'extra_id');
+    }
 }

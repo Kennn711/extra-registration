@@ -11,11 +11,10 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
                     <h5 class="card-title">
                         Extracullicular Members Data
                     </h5>
-                    <a href="{{ route('member.create') }}" class="btn btn-success btn-md">Add Member</a>
                 </div>
             </div>
             <div class="card-body">
@@ -41,11 +40,25 @@
                                     <img src="{{ asset('uploads/avatar/' . $see->user->avatar) }}" alt="" width="100">
                                 </td>
                                 <td>
-                                    <form action="{{ route('member.destroy', $see->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-md">Kick</button>
-                                    </form>
+                                    @if ($see->status == 'pending')
+                                        <form action="{{ route('member.status', $see->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="status" value="accepted">
+                                            <button class="btn btn-success btn-md">Accept</button>
+                                        </form>
+                                        <form action="{{ route('member.destroy', $see->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-md">Reject</button>
+                                        </form>
+                                    @endif
+                                    @if ($see->status == 'accepted')
+                                        <form action="{{ route('member.destroy', $see->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-md">Kick</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

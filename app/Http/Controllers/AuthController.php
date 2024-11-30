@@ -48,6 +48,8 @@ class AuthController extends Controller
                 return redirect()->route("admin.index");
             } elseif ($user->role == 'leader') {
                 return redirect()->route("leader.index");
+            } elseif ($user->role == 'student') {
+                return redirect()->route('landingpage.index');
             }
         }
     }

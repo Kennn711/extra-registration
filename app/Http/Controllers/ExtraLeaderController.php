@@ -34,7 +34,7 @@ class ExtraLeaderController extends Controller
             "name"     => "required",
             "email"    => "required|unique:users",
             "password" => "required",
-            "avatar"   => "nullable|image|mimes:jpg,png,jpeg",
+            "avatar"   => "nullable|image|mimes:jpg,png,jpeg,webp",
         ]);
 
         $validation['password'] = bcrypt($request->password);

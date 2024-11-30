@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Extra;
 use App\Models\Member;
 use App\Models\User;
 use Carbon\Carbon;
@@ -27,13 +28,23 @@ class MemberController extends Controller
     function store(Request $request)
     {
         Member::create([
-            "extra_id" => Auth::user()->extra_id,
+            "extra_id" => $request->extra_id,
             "student_id" => $request->student_id,
             "reason" => $request->reason,
-            "date_of_registration" => Carbon::now()
+            "date_of_registration" => Carbon::now(),
+            "status" => "pending"
         ]);
 
-        return redirect()->route("member.index");
+        return redirect()->route("regis.index");
+    }
+
+    function status(Request $request, $id)
+    {
+        $member = Member::find($id);
+        $member->status = $request->input('status');
+        $member->save();
+
+        return redirect()->route('member.index');
     }
 
     function destroy(String $id)

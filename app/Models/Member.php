@@ -17,4 +17,9 @@ class Member extends Model
     {
         return $this->belongsTo(User::class, 'student_id', 'id');
     }
+
+    public function leader()
+    {
+        return $this->belongsTo(User::class, 'extra_id', 'extra_id')->where('role', 'leader');
+    }
 }

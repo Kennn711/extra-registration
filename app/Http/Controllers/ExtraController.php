@@ -38,7 +38,7 @@ class ExtraController extends Controller
             "time"        => "required",
             "description" => "required",
             "extra_id"   => "required",
-            "logo"        => "required|image|mimes:jpg,png,jpeg",
+            "logo"        => "required|image|mimes:jpg,png,jpeg,webp",
         ]);
 
         $file_name = rand(1000, 9999) . date("ymdHis") . '.' . $request->file('logo')->getClientOriginalName();
