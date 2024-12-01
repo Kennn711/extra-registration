@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Extra;
 use App\Models\Member;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
@@ -28,11 +27,13 @@ class RegistrationController extends Controller
         return view("registration.landing-page");
     }
 
+    // Ini controller buat menampilkan nama leader dan member
     public function myextra()
     {
+        $extra = Member::with('showextra')->where('student_id', Auth::user()->id)->get();
+
         return view('member.myextra', [
-            "leader" => Member::with('leader')->get(),
-            "member" => Member::with('user')->where('status', 'accepted')->get()
+            "extra" => $extra
         ]);
     }
 }

@@ -1,50 +1,29 @@
 @extends('layouts-frontend/index');
 @section('content-frontend')
-    <div class="row  justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="card-title">
-                                Your Extracullicular
-                            </h5>
-                            <p>Leader Name :
-                                {{ $leader->first()->leader->name }}<b></b>
-                            </p>
+    <section class="py-5">
+        <div class="container px-5 mb-5">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Your Extra</span></h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    @foreach ($extra as $see)
+                        <!-- Project Card 1-->
+                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-5">
+                                        <h2 class="fw-bolder">{{ $see->showextra->name }}</h2>
+                                        <p class="text-secondary-emphasis">{{ $see->showextra->description }}</p>
+                                        <a href="" class="btn btn-primary btn-md">Look Member</a>
+                                    </div>
+                                    <img class="img-fluid" src="{{ asset('uploads/logo/' . $see->showextra->logo) }}" class="img-fluid" alt="..." />
+                                </div>
+                            </div>
                         </div>
-                        <a href="{{ route('extraleader.create') }}" class="btn btn-danger btn-md">Exit</a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Fullname</th>
-                                <th>Email</th>
-                                <th>Avatar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($member as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->user->email }}</td>
-                                    <td>
-                                        @if (!empty($item->user->avatar))
-                                            <img src="{{ asset('uploads/avatar' . $see->avatar) }}" alt="">
-                                        @else
-                                            None
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

@@ -13,6 +13,11 @@ class Member extends Model
         return $this->belongsTo(Extra::class, 'student_id');
     }
 
+    public function showextra()
+    {
+        return $this->belongsTo(Extra::class, 'extra_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'student_id', 'id');
@@ -20,6 +25,6 @@ class Member extends Model
 
     public function leader()
     {
-        return $this->belongsTo(User::class, 'extra_id', 'extra_id')->where('role', 'leader');
+        return $this->belongsTo(User::class, 'extra_id', 'extra_id');
     }
 }
