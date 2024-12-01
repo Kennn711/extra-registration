@@ -30,6 +30,7 @@ Route::post('member/status/{id}', [MemberController::class, 'status'])->name("me
 Route::delete('member/{id}/', [MemberController::class, 'destroy'])->name("member.destroy");
 
 Route::get('myextra', [RegistrationController::class, 'myextra'])->name('myextra.index');
+Route::get('extradetail/{id}', [MemberController::class, 'extraDetail'])->name('extra-detail.index');
 
 Route::get('registration', [RegistrationController::class, 'index'])->name("regis.index");
 Route::get('registration/{id}/create', [RegistrationController::class, 'create'])->name("regis.create");

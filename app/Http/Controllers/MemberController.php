@@ -53,4 +53,13 @@ class MemberController extends Controller
 
         return redirect()->route("member.index");
     }
+
+    function extraDetail($extra_id)
+    {
+        $extra = Member::with('user')->where('extra_id', $extra_id)->get();
+
+        return view('member/extra-detail', [
+            'extra' => $extra
+        ]);
+    }
 }
