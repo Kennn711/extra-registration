@@ -28,7 +28,7 @@
                         <a href="index.html"><img src="{{ asset('assets') }}/assets/compiled/svg/logo.svg" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">Login</h1>
-                    <p class="auth-subtitle mb-5">Welcome to Beasteri Extracullicular</p>
+                    <p class="auth-subtitle mb-5">Welcome to Beasteri</p>
 
                     <form action="{{ route('login.validation') }}" method="POST">
                         @csrf
