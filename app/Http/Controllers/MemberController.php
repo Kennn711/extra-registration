@@ -57,9 +57,13 @@ class MemberController extends Controller
     function extraDetail($extra_id)
     {
         $extra = Member::with('user')->where('extra_id', $extra_id)->get();
+        $extraLeader = User::where('extra_id', $extra_id)->where('role', 'leader')->get();
+        $extraName = Extra::where('id', $extra_id)->get();
 
         return view('member/extra-detail', [
-            'extra' => $extra
+            'extra' => $extra,
+            'extraName' => $extraName,
+            'extraLeader' => $extraLeader
         ]);
     }
 }

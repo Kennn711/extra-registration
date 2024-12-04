@@ -14,7 +14,7 @@
                                     <div class="p-5">
                                         <h2 class="fw-bolder">{{ $see->showextra->name }}</h2>
                                         <p class="text-secondary-emphasis">{{ $see->showextra->description }}</p>
-                                        <a href="{{ route('extra-detail.index', $see->showextra->id) }}" class="btn btn-primary btn-md">Look Member</a>
+                                        <a href="{{ route('extra-detail.index', $see->showextra->id) }}" class="btn btn-success btn-md">Look Member</a>
                                     </div>
                                     <img class="img-fluid" src="{{ asset('uploads/logo/' . $see->showextra->logo) }}" class="img-fluid" alt="..." />
                                 </div>

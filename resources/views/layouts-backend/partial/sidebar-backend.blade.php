@@ -3,7 +3,7 @@
         <li class="sidebar-title">Menu</li>
 
         @if (auth()->user()->role == 'admin')
-            <li class="sidebar-item active ">
+            <li class="sidebar-item {{ Request::routeIs('admin.index') ? 'active' : '' }} ">
                 <a href="{{ route('admin.index') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
@@ -12,7 +12,7 @@
         @endif
 
         @if (auth()->user()->role == 'leader')
-            <li class="sidebar-item active ">
+            <li class="sidebar-item {{ Request::routeIs('leader.index') ? 'active' : '' }} ">
                 <a href="{{ route('leader.index') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
@@ -20,7 +20,7 @@
             </li>
         @endif
 
-        <li class="sidebar-item  has-sub">
+        <li class="sidebar-item  has-sub {{ Request::routeIs('extra.index') || Request::routeIs('extraleader.index') || Request::routeIs('student.index') || Request::routeIs('member.index') ? 'active' : '' }} ? 'active' : '' }}">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Tables</span>

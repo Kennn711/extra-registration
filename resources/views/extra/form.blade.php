@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="justify-content-center align-items-center">
-                    <h1>Form Add Ekxtracullicular</h1>
+                    <h1>Form Add Extracullicular</h1>
                 </div>
 
                 <div class="card shadow">

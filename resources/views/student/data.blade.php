@@ -23,6 +23,7 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Avatar</th>
                             <th>Action</th>
                         </tr>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $see->name }}</td>
+                                <td>{{ $see->email }}</td>
                                 <td>
                                     <img src="{{ asset('uploads/avatar/' . $see->avatar) }}" alt="" width="100">
                                 </td>

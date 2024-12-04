@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\ExtraLeaderController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StudentController;
-use App\Models\Member;
-use App\Models\Registration;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [AuthController::class, 'login'])->name("login");
@@ -16,8 +15,8 @@ Route::get("register", [AuthController::class, 'register'])->name("register");
 Route::post('/login', [AuthController::class, 'loginValidation'])->name("login.validation");
 Route::get('logout', [AuthController::class, 'logout'])->name("logout");
 
-Route::get("admin/dashboard", [AuthController::class, 'dashboardAdmin'])->name("admin.index");
-Route::get("leader/dashboard", [AuthController::class, 'dashboardLeader'])->name("leader.index");
+Route::get("admin/dashboard", [DashboardController::class, 'dashboardAdmin'])->name("admin.index");
+Route::get("leader/dashboard", [DashboardController::class, 'dashboardLeader'])->name("leader.index");
 
 Route::resource("extra", ExtraController::class);
 Route::resource("extraleader", ExtraLeaderController::class);

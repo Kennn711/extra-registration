@@ -1,5 +1,5 @@
 @extends('layouts-backend.index')
-@section('page-title', 'Leader Data')
+@section('page-title', 'Leader')
 
 @push('breadcumb-backend')
     <li class="breadcrumb-item">Admin</li>

@@ -3,9 +3,14 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h3>Extracullicular Data</h3>
+                @foreach ($extraName as $item)
+                    <h3>{{ $item->name }} Extracullicular</h3>
+                @endforeach
                 <div class="card shadow">
                     <div class="card-body">
+                        @foreach ($extraLeader as $see2)
+                            <h5 class="fw-bold">Extra Leader : {{ $see2->name }}</h5>
+                        @endforeach
                         <table class="table">
                             <thead>
                                 <tr>
