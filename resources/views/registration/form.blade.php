@@ -12,13 +12,11 @@
                         <form action="{{ route('member.store') }}" method="POST">
                             @csrf
                             <label>Extracullicular Leader : </label>
-                            <input type="text" value="{{ $data->leader->name }}" disabled readonly class="form-control mb-2">
+                            <input type="text" value="{{ $data->leader->name }}" readonly class="form-control mb-2">
 
                             <label>Choosed Extracullicular : </label>
                             <input type="hidden" name="extra_id" value="{{ $data->id }}">
-                            <select name="extra_id" class="form-select mb-2">
-                                <option value="{{ $data->id }}" selected disabled>{{ $data->name }}</option>
-                            </select>
+                            <option class="form-select mb-2" value="{{ $data->id }}">{{ $data->name }}</option>
 
                             <input type="hidden" name="student_id" value="{{ auth()->user()->id }}">
 

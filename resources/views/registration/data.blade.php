@@ -15,7 +15,34 @@
                                     <div class="p-5">
                                         <h2 class="fw-bolder">{{ $see->name }}</h2>
                                         <p class="text-secondary-emphasis">{{ $see->description }}</p>
-                                        <a href="{{ route('regis.create', $see->id) }}" class="btn btn-success btn-md">Apply</a>
+                                        @php
+                                            $alreadyJoin = DB::table('members')
+                                                ->where('student_id', Auth::user()->id)
+                                                ->where('extra_id', $see->id)
+                                                ->where('status', 'accepted')
+                                                ->exists();
+                                        @endphp
+
+                                        @php
+                                            $alreadySubmit = DB::table('members')
+                                                ->where('student_id', Auth::user()->id)
+                                                ->where('extra_id', $see->id)
+                                                ->where('status', 'pending')
+                                                ->exists();
+                                        @endphp
+
+                                        @if ($alreadyJoin)
+                                            <button type="button" disabled class="btn btn-danger btn-md">You already join this Extra !</button>
+                                        @endif
+
+                                        @if ($alreadySubmit)
+                                            <button type="button" disabled class="btn btn-warning btn-md">You already submit to join this Extra !</button>
+                                        @endif
+
+                                        @if (!$alreadyJoin && !$alreadySubmit)
+                                            <a href="{{ route('regis.create', $see->id) }}" class="btn btn-success btn-md">Apply</a>
+                                        @endif
+
                                     </div>
                                     <img class="img-fluid" src="{{ asset('uploads/logo/' . $see->logo) }}" class="img-fluid" alt="..." />
                                 </div>

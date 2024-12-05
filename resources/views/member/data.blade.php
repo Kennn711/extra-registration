@@ -13,7 +13,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-start align-items-center">
                     <h5 class="card-title">
-                        Extracullicular Members Data
+                        {{ $extra->name }} Members Data
                     </h5>
                 </div>
             </div>

@@ -14,7 +14,8 @@ class MemberController extends Controller
     function index()
     {
         return view("member.data", [
-            "member" => Member::with('user')->where('extra_id', Auth::user()->extra_id)->get()
+            "member" => Member::with('user')->where('extra_id', Auth::user()->extra_id)->get(),
+            "extra" => Extra::where('id', Auth::user()->extra_id)->first()
         ]);
     }
 

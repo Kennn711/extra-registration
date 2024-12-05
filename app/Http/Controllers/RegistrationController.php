@@ -30,7 +30,7 @@ class RegistrationController extends Controller
     // Ini controller buat menampilkan nama leader dan member
     public function myextra()
     {
-        $extra = Member::with('showextra')->where('student_id', Auth::user()->id)->get();
+        $extra = Member::with('showextra')->where('student_id', Auth::user()->id)->where('status', 'accepted')->get();
 
         return view('member.myextra', [
             "extra" => $extra
