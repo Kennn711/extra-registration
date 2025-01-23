@@ -46,7 +46,6 @@ class ExtraController extends Controller
         $validation['logo'] = $file_name;
 
         $extra = Extra::create($validation);
-
         $leader = User::find($validation['extra_id']);
         $leader->extra_id = $extra->id;
         $leader->save();

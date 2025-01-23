@@ -42,7 +42,6 @@
                                         @if (!$alreadyJoin && !$alreadySubmit)
                                             <a href="{{ route('regis.create', $see->id) }}" class="btn btn-success btn-md">Apply</a>
                                         @endif
-
                                     </div>
                                     <img class="img-fluid" src="{{ asset('uploads/logo/' . $see->logo) }}" class="img-fluid" alt="..." />
                                 </div>
